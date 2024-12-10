@@ -1,7 +1,7 @@
 "use client";
 import { containerMultiStepForm as container } from "@/constants/framer-motion";
 import { CampaignFormContext } from "@/app/example/multi-step-form/campaign/_components/multi-step-campaign-config";
-import { useMultiStepForm } from "@/hooks/multi-step-form";
+import { useMultiStepForm } from "@/components/hooks/multi-step-form";
 import { motion } from "framer-motion";
 import { Form } from "@/components/ui/form";
 import React, { PropsWithChildren } from "react";

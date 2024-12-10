@@ -1,6 +1,6 @@
 "use client";
 
-import { useWebsiteBuilder } from "@/hooks/web-site-builder";
+import { useWebsiteBuilder } from "@/components/hooks/web-site-builder";
 import { Element } from "@/types/web-site-builder";
 
 //TODO: Evaluate to render on the server

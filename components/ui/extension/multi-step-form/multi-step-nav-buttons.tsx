@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { useMultiStepForm } from "@/hooks/multi-step-form";
+import { useMultiStepForm } from "@/components/hooks/multi-step-form";
 import type { Context } from "react";
 import type { UseMultiStepFormTypeOptions } from "@/types/multi-step-form";
 

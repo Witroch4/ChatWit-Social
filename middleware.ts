@@ -17,8 +17,11 @@ export default auth((req) => {
 	if (isProtectedRoute && !isLoggedIn) {
 		return NextResponse.redirect(new URL("/auth/login", req.url));
 	}
-
-	// console.log(`Middleware: ${req.nextUrl.pathname}`);
+	  // Redirecionar para /dashboard se o usuário estiver logado e acessar /
+	 if (isLoggedIn && nextUrl.pathname === "/") {
+		return NextResponse.redirect(new URL("/dashboard", req.url));
+	  }
+	 console.log(`Middleware: ${req.nextUrl.pathname}`);
 });
 
 export const config = {
@@ -29,5 +32,6 @@ export const config = {
 	 * - _next/image (image optimization files)
 	 * - favicon.ico (favicon file)
 	 */
-	matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+	matcher: ["/((?!api|_next/static|_next/image|favicon.ico|dashboard).*)"], // Exclua /dashboard
+
 };

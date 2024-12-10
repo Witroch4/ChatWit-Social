@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react'
 import { Button } from "@/components/ui/button";
 import { ActionType, type SelectElement, type DeleteElement, type UpdateElement } from "@/types/web-site-builder/actions";
-import { useWebsiteBuilder } from "@/hooks/web-site-builder";
+import { useWebsiteBuilder } from "@/components/hooks/web-site-builder";
 import { cn } from '@/lib/utils';
 import { Trash } from 'lucide-react';
 import type { Element } from '@/types/web-site-builder';

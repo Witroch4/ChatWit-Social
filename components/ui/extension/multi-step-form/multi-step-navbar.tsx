@@ -3,7 +3,7 @@ import { containerMultiStepNavbar as container } from "@/constants/framer-motion
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { motion } from "framer-motion"
-import { useMultiStepForm } from "@/hooks/multi-step-form";
+import { useMultiStepForm } from "@/components/hooks/multi-step-form";
 import type { Context } from "react";
 import type { UseMultiStepFormTypeOptions } from "@/types/multi-step-form";
 

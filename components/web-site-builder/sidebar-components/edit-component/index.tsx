@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Separator } from "@/components/ui/separator";
-import { useWebsiteBuilder } from "@/hooks/web-site-builder";
+import { useWebsiteBuilder } from "@/components/hooks/web-site-builder";
 import { ElementImpl } from "@/lib/web-site-builder/elements";
 import { ActionType, type UnselectElement } from "@/types/web-site-builder/actions";
 

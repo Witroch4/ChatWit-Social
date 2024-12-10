@@ -1,7 +1,7 @@
 "use server";
 
 import { auth } from "@/auth";
-import { useCurrentUser } from "@/hooks/use-current-user";
+import { useCurrentUser } from "@/components/hooks/use-current-user";
 import { prisma } from "@/lib/db";
 import { UserSettingsSchema } from "@/schemas/auth";
 import { findUserbyEmail, findUserbyId } from "@/services";

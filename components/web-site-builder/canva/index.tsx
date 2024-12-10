@@ -1,6 +1,6 @@
 "use client";
 
-import { useWebsiteBuilder } from "@/hooks/web-site-builder";
+import { useWebsiteBuilder } from "@/components/hooks/web-site-builder";
 import { cn } from "@/lib/utils";
 import { ElementImpl } from "@/lib/web-site-builder/elements";
 import type { ElementType, Element } from "@/types/web-site-builder";

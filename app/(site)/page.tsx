@@ -1,6 +1,8 @@
 import Navbar from "@/components/site/navbar";
 import { HandCoins, Twitch, Youtube } from "lucide-react";
 
+
+
 export default function Home() {
 	return (
 		<div className="flex min-h-screen w-full flex-col">
