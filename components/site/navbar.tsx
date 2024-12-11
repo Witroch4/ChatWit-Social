@@ -12,7 +12,7 @@ const Navbar = () => {
       {/* Botão para abrir/fechar a sidebar */}
       <div
         className={`fixed top-4 ${
-          isSidebarOpen ? "left-[calc(16rem+10px)]" : "left-4"
+          isSidebarOpen ? "left-[calc(16rem+10px)]" : "left-[4.5rem]"
         } z-50 transition-all duration-300`}
       >
         <SidebarTrigger

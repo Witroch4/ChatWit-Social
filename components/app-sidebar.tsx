@@ -1,27 +1,27 @@
-"use client"
+"use client";
 
-import { useSession } from "next-auth/react"
-import LoginBadge from "@/components/auth/login-badge"
-import { ChevronDown, CircleUser, User2, Instagram } from "lucide-react"
+import { useSession } from "next-auth/react";
+import LoginBadge from "@/components/auth/login-badge";
+import { ChevronDown, CircleUser, User2, Instagram, Users, Zap, Calendar, MessageCircle, HelpCircle } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarGroupContent,
   SidebarFooter,
   SidebarMenu,
   SidebarMenuItem,
-  SidebarMenuButton
-} from "@/components/ui/sidebar"
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible"
-import Link from "next/link"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent } from "@/components/ui/dropdown-menu"
-
+  SidebarMenuButton,
+  useSidebar,
+} from "@/components/ui/sidebar";
+import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent } from "@/components/ui/dropdown-menu";
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 
 export function AppSidebar() {
-  const { data: session } = useSession()
+  const { data: session } = useSession();
+  const { state } = useSidebar(); // Certifique-se de usar o hook useSidebar aqui
 
   return (
     <Sidebar collapsible="icon" side="left" variant="sidebar">
@@ -29,12 +29,10 @@ export function AppSidebar() {
         {/* Grupo: Social Login */}
         <Collapsible defaultOpen={false} className="group/collapsible">
           <SidebarGroup>
-            <SidebarGroupLabel asChild>
-              <CollapsibleTrigger className="flex items-center gap-2">
-                Social Login
-                <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-              </CollapsibleTrigger>
-            </SidebarGroupLabel>
+            <CollapsibleTrigger className="flex items-center gap-2">
+              Social Login
+              <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+            </CollapsibleTrigger>
             <CollapsibleContent>
               <SidebarGroupContent>
                 <div className="p-4">
@@ -57,130 +55,96 @@ export function AppSidebar() {
           </SidebarGroup>
         </Collapsible>
 
-        {/* Grupo: Contatos */}
-        <Collapsible defaultOpen={false} className="group/collapsible">
-          <SidebarGroup>
-            <SidebarGroupLabel asChild>
-              <CollapsibleTrigger className="flex items-center gap-2">
-                Contatos
-                <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-              </CollapsibleTrigger>
-            </SidebarGroupLabel>
-            <CollapsibleContent>
-              <SidebarGroupContent>
-                <div className="p-4 text-sm space-y-2">
-                  <h2 className="font-bold mb-2 text-base">Contatos</h2>
-                  <p>Criar Novo Contato</p>
-                  <p>Importar</p>
-                  <p>SegmentosPRO</p>
-                  <p>Aplicar filtro(s) aos seus contatos para criar o seu primeiro Segmento</p>
-                  <p>Widgets</p>
-                  <p>Contatos</p>
-                  <p>Post or Reel Comments #1</p>
-                  <p>0</p>
-                  <p>Filtro</p>
-                  <p>Pesquisar</p>
-                  <p>0 selecionado(s) do total de 2</p>
-                  <p>Ações em Lote</p>
-                  <table className="mt-4 w-full text-left">
-                    <thead>
-                      <tr className="border-b">
-                        <th className="py-2">Imagem do Perfil</th>
-                        <th>Nome</th>
-                        <th>Gênero</th>
-                        <th>Status</th>
-                        <th>Inscrito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="border-b">
-                        <td>arma.dillo1817</td>
-                        <td>Inscrito</td>
-                        <td>-</td>
-                        <td>Inscrito</td>
-                        <td>há 5 horas</td>
-                      </tr>
-                      <tr>
-                        <td>João Sousa Miguel</td>
-                        <td>Inscrito</td>
-                        <td>-</td>
-                        <td>Inscrito</td>
-                        <td>há 5 horas</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </SidebarGroupContent>
-            </CollapsibleContent>
-          </SidebarGroup>
-        </Collapsible>
-
-        {/* Grupo: Agendamento de Postagens */}
+        {/* Contatos */}
         <SidebarGroup>
-          <SidebarGroupLabel>Agendamento de Postagens</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <a href="/agendamento">Agendar Novo Post</a>
+                  <a href="/contatos">
+                    <Users className="mr-2" />
+                    <span>Contatos</span>
+                  </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* Grupo: Calendário */}
+        {/* Agendamento */}
         <SidebarGroup>
-          <SidebarGroupLabel>Calendário</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <a href="/calendario">Visualizar Calendário</a>
+                  <a href="/agendamento">
+                    <Zap className="mr-2" />
+                    <span>Agendamento de Postagens</span>
+                  </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* Grupo: Automação */}
+        {/* Calendário */}
         <SidebarGroup>
-          <SidebarGroupLabel>Automação</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <a href="/automacao">Configurações de Automação</a>
+                  <a href="/calendario">
+                    <Calendar className="mr-2" />
+                    <span>Calendário</span>
+                  </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* Grupo: Chat ao Vivo */}
+        {/* Automação */}
         <SidebarGroup>
-          <SidebarGroupLabel>Chat ao Vivo</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <a href="/chat">Acessar Chat</a>
+                  <a href="/automacao">
+                    <Zap className="mr-2" />
+                    <span>Automação</span>
+                  </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* O grupo "Meu Perfil" foi removido daqui */}
-
-        {/* Grupo: Ajuda (Docs) */}
+        {/* Chat ao Vivo */}
         <SidebarGroup>
-          <SidebarGroupLabel>Ajuda (Docs)</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <a href="/docs">Documentação</a>
+                  <a href="/chat">
+                    <MessageCircle className="mr-2" />
+                    <span>Chat ao Vivo</span>
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        {/* Ajuda (Docs) */}
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <a href="/docs">
+                    <HelpCircle className="mr-2" />
+                    <span>Ajuda (Docs)</span>
+                  </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
@@ -188,36 +152,39 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      {/* SidebarFooter: Minha Conta com Dropdown (incluindo LoginBadge, ThemeToggle, Perfil, Cobrança, Sair) */}
       <SidebarFooter>
         <div className="p-4">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="flex items-center w-full px-2 py-1 hover:bg-accent rounded">
+              <button
+                className={`flex items-center w-full px-2 py-1 hover:bg-accent rounded ${
+                  session?.user && state === "collapsed" ? "justify-center" : ""
+                }`}
+              >
                 {session?.user?.image ? (
-                  <Avatar className="mr-2 h-6 w-6">
+                  <Avatar className="h-6 w-6">
                     <AvatarImage src={session.user.image} />
                     <AvatarFallback>
                       <CircleUser className="h-4 w-4" />
                     </AvatarFallback>
                   </Avatar>
                 ) : (
-                  <User2 className="mr-2" />
+                  <User2 className="h-6 w-6" />
                 )}
-                <span>{session?.user?.name ?? "Minha Conta"}</span>
-                <ChevronDown className="ml-auto" />
+                {state !== "collapsed" && (
+                  <span className="ml-2">{session?.user?.name ?? "Minha Conta"}</span>
+                )}
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
               side="top"
               className="w-[--radix-popper-anchor-width]"
             >
-              {/* Aqui mostra o LoginBadge já expandido */}
               <LoginBadge user={session?.user} />
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }

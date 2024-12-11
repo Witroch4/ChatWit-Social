@@ -1,21 +1,26 @@
-"use client";
-
+import React from "react";
 import { Button } from "@/components/ui/button";
 import type { User } from "next-auth";
 import Link from "next/link";
 import { CircleUser, LogOut } from "lucide-react";
 import { LineMdCogLoop } from "../icons";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import Lottie from "lottie-react";
+import coinsLightAnimation from "@/animations/coins-light.json";
+import coinsDarkAnimation from "@/animations/coins-dark.json";
 import LoginButton from "./login-button";
 import LogoutButton from "./logout-button";
+import { useTheme } from "next-themes";
 
 type Props = {
   user?: User;
 };
 
 const LoginBadge = ({ user }: Props) => {
+  const { theme } = useTheme();
+  const coinsAnimation = theme === "dark" ? coinsDarkAnimation : coinsLightAnimation;
+
   if (!user) {
-    // Caso não haja usuário logado, exibe botão para entrar
     return (
       <div className="flex flex-col gap-2 p-2">
         <LoginButton>
@@ -25,7 +30,6 @@ const LoginBadge = ({ user }: Props) => {
     );
   }
 
-  // Usuário logado: mostra avatar, nome e opções sem dropdown
   return (
     <div className="flex flex-col gap-2 p-2">
       <div className="flex items-center gap-2">
@@ -43,7 +47,10 @@ const LoginBadge = ({ user }: Props) => {
           <LineMdCogLoop className="mr-2" />
           Perfil
         </Link>
-        <Link href="/cobranca" className="hover:underline">
+        <Link href="/cobranca" className="hover:underline flex items-center gap-2">
+          <div className="w-6 h-6">
+            <Lottie animationData={coinsAnimation} loop={true} />
+          </div>
           Cobrança
         </Link>
         <LogoutButton>
