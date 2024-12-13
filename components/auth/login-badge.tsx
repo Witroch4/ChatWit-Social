@@ -1,3 +1,7 @@
+//components/auth/login-badge.tsx
+
+"use client";
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import type { User } from "next-auth";
@@ -19,6 +23,9 @@ type Props = {
 const LoginBadge = ({ user }: Props) => {
   const { theme } = useTheme();
   const coinsAnimation = theme === "dark" ? coinsDarkAnimation : coinsLightAnimation;
+
+  // Verificar se está no client para renderizar o Lottie
+  const isClient = typeof window !== 'undefined';
 
   if (!user) {
     return (
@@ -49,7 +56,7 @@ const LoginBadge = ({ user }: Props) => {
         </Link>
         <Link href="/cobranca" className="hover:underline flex items-center gap-2">
           <div className="w-6 h-6">
-            <Lottie animationData={coinsAnimation} loop={true} />
+            {isClient && <Lottie animationData={coinsAnimation} loop={true} />}
           </div>
           Cobrança
         </Link>

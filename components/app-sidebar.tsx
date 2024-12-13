@@ -1,6 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import { useState, useEffect } from "react";
 import LoginBadge from "@/components/auth/login-badge";
 import { ChevronDown, CircleUser, User2, Instagram, Users, Zap, Calendar, MessageCircle, HelpCircle } from "lucide-react";
 import {
@@ -23,6 +24,22 @@ export function AppSidebar() {
   const { data: session } = useSession();
   const { state } = useSidebar(); // Certifique-se de usar o hook useSidebar aqui
 
+  const [instagramConnected, setInstagramConnected] = useState(false);
+
+  useEffect(() => {
+    // Chama a rota para verificar status do Instagram
+    fetch('/api/instagram/status')
+      .then(res => res.json())
+      .then(data => {
+        setInstagramConnected(data.connected);
+      })
+      .catch(() => setInstagramConnected(false));
+  }, []);
+
+// URL de autorização com enable_fb_login=0 e force_authentication=1
+const instagramAuthUrl = `https://www.instagram.com/oauth/authorize?enable_fb_login=0&force_authentication=1&client_id=${process.env.NEXT_PUBLIC_INSTAGRAM_CLIENT_ID}&redirect_uri=${encodeURIComponent(process.env.NEXT_PUBLIC_INSTAGRAM_REDIRECT_URI)}&response_type=code&scope=instagram_business_basic,instagram_business_manage_messages,instagram_business_manage_comments,instagram_business_content_publish`;
+
+
   return (
     <Sidebar collapsible="icon" side="left" variant="sidebar">
       <SidebarContent>
@@ -36,14 +53,14 @@ export function AppSidebar() {
             <CollapsibleContent>
               <SidebarGroupContent>
                 <div className="p-4">
-                  <h1 className="text-xl font-bold mb-4">
-                    Faça login e dê Autorização da sua Rede Social
-                  </h1>
+                  <a className="text-l font-bold mb-2">
+                    Para continuar, faça login com sua rede social e autorize o acesso.
+                  </a>
                   <SidebarMenu>
                     <SidebarMenuItem>
                       <SidebarMenuButton asChild>
-                        <a href="/auth/instagram">
-                          <Instagram className="mr-2" />
+                        <a href={instagramAuthUrl} className="flex items-center gap-2">
+                          <Instagram className={`mr-2 ${instagramConnected ? "text-pink-500" : "text-current"}`} />
                           <span>Login com Instagram</span>
                         </a>
                       </SidebarMenuButton>
@@ -127,7 +144,7 @@ export function AppSidebar() {
                 <SidebarMenuButton asChild>
                   <a href="/chat">
                     <MessageCircle className="mr-2" />
-                    <span>Chat ao Vivo</span>
+                    <span>Chat ao Vivos</span>
                   </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>

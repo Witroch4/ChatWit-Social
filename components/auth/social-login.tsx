@@ -1,3 +1,4 @@
+//components/auth/social-login.tsx
 import Link from "next/link";
 import React from "react";
 import LoginSocialButton from "./login-social-button";

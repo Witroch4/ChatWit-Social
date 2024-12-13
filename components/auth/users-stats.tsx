@@ -1,3 +1,4 @@
+//components/auth/user-stats.tsx
 "use client"
 
 import type { User } from '@/types/shared'

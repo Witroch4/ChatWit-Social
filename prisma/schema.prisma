@@ -10,8 +10,10 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["debian-openssl-3.0.x"]
 }
+
 
 enum UserRole {
   DEFAULT
@@ -53,6 +55,7 @@ model Account {
 
   @@id([provider, providerAccountId])
 }
+
 
 model VerificationToken {
   id      String   @id @default(cuid())

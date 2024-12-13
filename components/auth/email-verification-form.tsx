@@ -1,3 +1,5 @@
+//components/auth/email-verification-form.tsx
+
 "use client";
 import { verifyToken } from "@/actions/auth";
 import { useSearchParams } from "next/navigation";
